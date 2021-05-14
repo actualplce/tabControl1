@@ -41,7 +41,11 @@
             </TabItem>
 
             <TabItem Header="View2">
-
+                <ContentControl>
+                    <ContentPresenter>
+                        그래프 들어가는자리.
+                    </ContentPresenter>
+                </ContentControl>
                  </TabItem>
 
 
