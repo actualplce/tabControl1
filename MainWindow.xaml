@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Resources>
+            <local:View1 x:Key="view1src" />
+        </Grid.Resources>
+
 
 
         <TabControl>
@@ -19,7 +23,7 @@
                 </Grid.ColumnDefinitions>
 
                     <ContentControl>
-                        <DataGrid ContentTemplate="{Binding }" >
+                        <DataGrid ContentTemplate="{Binding excelView}" >
                             액셀이랑 연결될 VM 바인딩
 
                         </DataGrid>

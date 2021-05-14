@@ -4,13 +4,8 @@ using System.Text;
 
 namespace tabControl1
 {
-    class ButtonCommands
+    class View1
     {
-        //SaveBtnCommand
-
-
-
-
 
     }
 }
