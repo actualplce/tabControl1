@@ -1,0 +1,47 @@
+﻿<Window x:Class="tabControl1.FirstView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tabControl1"
+        mc:Ignorable="d"
+        Title="FirstView" Height="450" Width="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="Datagrid_Import" ItemsSource="{Binding ObserList}" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Column="0">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                    <Setter Property="IsEditing" Value="True"/>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="번호" MinWidth="10" Width="Auto" Binding="{Binding Number}" />
+                <DataGridTextColumn Header="이름" MinWidth="10" Width="Auto" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="생년월일" MinWidth="10" Width="Auto" Binding="{Binding BirthYMD}" />
+                <DataGridTextColumn Header="기타" MinWidth="10" Width="Auto" Binding="{Binding Etc}" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+            <Button Command="{Binding LoadCSVBtnCommand}" Height="30" Width="80" Margin="10" Content="LoadCSV" />
+            <Button Command="{Binding SaveCSVBtnCommand}" Height="30" Width="80" Margin="10" Content="SaveCSV" />
+            <Button Command="{Binding AddRowBtnCommand}" Height="30" Width="80" Margin="10" Content="Add" />
+            <Button Command="{Binding DeleteRowBtnCommand}" Height="30" Width="80" Margin="10" Content="Delete" />
+
+        </StackPanel>
+    </Grid>
+
+</Window>

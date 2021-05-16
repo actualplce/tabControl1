@@ -8,50 +8,104 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
-            <local:View1 x:Key="view1src" />
-        </Grid.Resources>
+            <SharedViewModel:TemplateSelector x:Key="TemplateSelector"
+                                FirstTypeTemplate="FirstView"
+                                SecondTypeTemplate="SecondView"/>
 
-
-
-        <TabControl>
-
-            <TabItem Header="View1">
-                <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="600"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
-
-                    <ContentControl>
-                        <DataGrid ContentTemplate="{Binding excelView}" >
-                            액셀이랑 연결될 VM 바인딩
-
-                        </DataGrid>
-                    </ContentControl>
-
-                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                        <Button Command="{Binding BtnCommand}" Height="30" Width="80" Margin="10" Content="Load" />
-                        <Button Command="{Binding BtnCommand}" Height="30" Width="80" Margin="10" Content="Save" />
-                        <Button Command="{Binding BtnCommand}" Height="30" Width="80" Margin="10" Content="Add" />
-                        <Button Command="{Binding BtnCommand}" Height="30" Width="80" Margin="10" Content="Load" />
-
+        <DataTemplate x:Key="FirstView">
+            <TextBlock Text="1st View"/>
+            <!--   <DockPanel>
+                <Image DockPanel.Dock="Right"
+                    Stretch="None"
+                    Source="{Binding Path=Face}" />
+                <UniformGrid
+                    Rows="2"
+                    VerticalAlignment="Center"
+                    Margin="10">
+                    <TextBlock
+                        TextAlignment="Center"
+                        Text="{Binding Path=Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=BirthDate.Month}" />
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{Binding Path=BirthDate.Day}" />
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{Binding Path=BirthDate.Year}" />
                     </StackPanel>
-                </Grid>
-
-            </TabItem>
-
-            <TabItem Header="View2">
-                <ContentControl>
-                    <ContentPresenter>
-                        그래프 들어가는자리.
-                    </ContentPresenter>
-                </ContentControl>
-                 </TabItem>
-
-
-               
-            
-            
-        </TabControl>
+                </UniformGrid>
+            </DockPanel>-->
+        </DataTemplate>
+        <DataTemplate x:Key="SecondView">
+            <TextBlock Text="2nd View"/>
+            <!--
+            <DockPanel>
+                <Image DockPanel.Dock="Left"
+                    Stretch="None"
+                    Source="{Binding Path=Face}" />
+                <UniformGrid
+                    Rows="2"
+                    VerticalAlignment="Center"
+                    Margin="10">
+                    <TextBlock
+                        TextAlignment="Center"
+                        Text="{Binding Path=Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=BirthDate.Month}" />
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{Binding Path=BirthDate.Day}" />
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{Binding Path=BirthDate.Year}" />
+                    </StackPanel>
+                </UniformGrid>
+            </DockPanel>-->
+        </DataTemplate>
+        <Style
+            TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment"   Value="Center" />
+            <Setter Property="Margin"              Value="12"     />
+        </Style>
+    </Grid.Resources>
+  
+        <ScrollViewer>
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
+                    <Button.Content>
+                 
+                    </Button.Content>
+                </Button>
+                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
+                    <Button.Content>
+                        <local:Employee
+                            Name="Edgar"
+                            BirthDate="1965/02/02"
+                            Face="IMAGE/Edgar.png"
+                            LeftHanded="True" />
+                    </Button.Content>
+                </Button>
+                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
+                    <Button.Content>
+                        <local:Employee
+                            Name="Sally"
+                            BirthDate="1980/07/12"
+                            Face="IMAGE/Sally.png"
+                            LeftHanded="True" />
+                    </Button.Content>
+                </Button>
+                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
+                    <Button.Content>
+                        <local:Employee
+                            Name="Jim"
+                            BirthDate="1975/06/15"
+                            Face="IMAGE/Jim.png"
+                            LeftHanded="False" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
+
+

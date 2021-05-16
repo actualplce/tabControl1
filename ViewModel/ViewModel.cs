@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tabControl1
+namespace tabControl1.ViewModel
 {
-    class View1
+    public class ViewModel: BaseViewModel
     {
+        
 
     }
 }
