@@ -3,17 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:View1="clr-namespace:tabControl1.View"
         xmlns:local="clr-namespace:tabControl1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
-            <SharedViewModel:TemplateSelector x:Key="TemplateSelector"
+     <!--       <local:TemplateSelector x:Key="TemplateSelector"
                                 FirstTypeTemplate="FirstView"
-                                SecondTypeTemplate="SecondView"/>
+                                SecondTypeTemplate="SecondView"/>-->
 
-        <DataTemplate x:Key="FirstView">
-            <TextBlock Text="1st View"/>
+        <DataTemplate x:Key="MyTabHeaderTemplate">
+            <TextBlock Text="{Binding Header}"/>
             <!--   <DockPanel>
                 <Image DockPanel.Dock="Right"
                     Stretch="None"
@@ -35,8 +36,8 @@
                 </UniformGrid>
             </DockPanel>-->
         </DataTemplate>
-        <DataTemplate x:Key="SecondView">
-            <TextBlock Text="2nd View"/>
+        <DataTemplate x:Key="FirstView">
+            <View1:FirstView DataContext="{Binding CurrentMyTabContentViewModel}"/>
             <!--
             <DockPanel>
                 <Image DockPanel.Dock="Left"
@@ -59,52 +60,15 @@
                 </UniformGrid>
             </DockPanel>-->
         </DataTemplate>
-        <Style
-            TargetType="{x:Type Button}">
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment"   Value="Center" />
-            <Setter Property="Margin"              Value="12"     />
-        </Style>
+
     </Grid.Resources>
   
-        <ScrollViewer>
-            <StackPanel
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
-                    <Button.Content>
-                 
-                    </Button.Content>
-                </Button>
-                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
-                    <Button.Content>
-                        <local:Employee
-                            Name="Edgar"
-                            BirthDate="1965/02/02"
-                            Face="IMAGE/Edgar.png"
-                            LeftHanded="True" />
-                    </Button.Content>
-                </Button>
-                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
-                    <Button.Content>
-                        <local:Employee
-                            Name="Sally"
-                            BirthDate="1980/07/12"
-                            Face="IMAGE/Sally.png"
-                            LeftHanded="True" />
-                    </Button.Content>
-                </Button>
-                <Button ContentTemplateSelector="{StaticResource EmployeeDataTemplateSelectorKey}">
-                    <Button.Content>
-                        <local:Employee
-                            Name="Jim"
-                            BirthDate="1975/06/15"
-                            Face="IMAGE/Jim.png"
-                            LeftHanded="False" />
-                    </Button.Content>
-                </Button>
-            </StackPanel>
-        </ScrollViewer>
+        <TabControl>
+            <TabItem Header="View1" ContentTemplateSelector="{StaticResource TemplateSelector}" IsSelected="{Binding isSelectedBool}">
+            </TabItem>
+            <TabItem Header="View2" ContentTemplateSelector="{StaticResource TemplateSelector}" IsSelected="{Binding isSelectedBool}">
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
 
