@@ -3,73 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:View1="clr-namespace:tabControl1.View"
         xmlns:local="clr-namespace:tabControl1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
-     <!--       <local:TemplateSelector x:Key="TemplateSelector"
-                                FirstTypeTemplate="FirstView"
-                                SecondTypeTemplate="SecondView"/>-->
+            <DataTemplate x:Key="FirstViewTemplate">
+            </DataTemplate>
 
-        <DataTemplate x:Key="MyTabHeaderTemplate">
-            <TextBlock Text="{Binding Header}"/>
-            <!--   <DockPanel>
-                <Image DockPanel.Dock="Right"
-                    Stretch="None"
-                    Source="{Binding Path=Face}" />
-                <UniformGrid
-                    Rows="2"
-                    VerticalAlignment="Center"
-                    Margin="10">
-                    <TextBlock
-                        TextAlignment="Center"
-                        Text="{Binding Path=Name}" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=BirthDate.Month}" />
-                        <TextBlock Text="/" />
-                        <TextBlock Text="{Binding Path=BirthDate.Day}" />
-                        <TextBlock Text="/" />
-                        <TextBlock Text="{Binding Path=BirthDate.Year}" />
-                    </StackPanel>
-                </UniformGrid>
-            </DockPanel>-->
-        </DataTemplate>
-        <DataTemplate x:Key="FirstView">
-            <View1:FirstView DataContext="{Binding CurrentMyTabContentViewModel}"/>
-            <!--
-            <DockPanel>
-                <Image DockPanel.Dock="Left"
-                    Stretch="None"
-                    Source="{Binding Path=Face}" />
-                <UniformGrid
-                    Rows="2"
-                    VerticalAlignment="Center"
-                    Margin="10">
-                    <TextBlock
-                        TextAlignment="Center"
-                        Text="{Binding Path=Name}" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=BirthDate.Month}" />
-                        <TextBlock Text="/" />
-                        <TextBlock Text="{Binding Path=BirthDate.Day}" />
-                        <TextBlock Text="/" />
-                        <TextBlock Text="{Binding Path=BirthDate.Year}" />
-                    </StackPanel>
-                </UniformGrid>
-            </DockPanel>-->
-        </DataTemplate>
+            <DataTemplate x:Key="SecondViewTemplate">
+            </DataTemplate>
 
-    </Grid.Resources>
-  
-        <TabControl>
-            <TabItem Header="View1" ContentTemplateSelector="{StaticResource TemplateSelector}" IsSelected="{Binding isSelectedBool}">
+            <local:TemplateSelector x:Key="TemplateSelector" FirstTypeTemplate="{StaticResource FirstViewTemplate}"
+                                    SecondTypeTemplate="{StaticResource SecondViewTemplate}"/>
+
+        </Grid.Resources>
+
+        <TabControl ItemsSource="{Binding Tabs}" 
+                    ItemTemplate="{StaticResource}">
+            <TabItem  ContentTemplateSelector="{StaticResource TemplateSelector}" Header="View1">
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="600"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="Datagrid_Import" ItemsSource="{Binding ObserList}" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Column="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="번호" MinWidth="10" Width="Auto" Binding="{Binding Number}" />
+                            <DataGridTextColumn Header="이름" MinWidth="10" Width="Auto" Binding="{Binding Name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                        <Button Command="{Binding LoadCSVBtnCommand}" Height="30" Width="80" Margin="10" Content="LoadCSV" />
+                        <Button Command="{Binding SaveCSVBtnCommand}" Height="30" Width="80" Margin="10" Content="SaveCSV" />
+                        <Button Command="{Binding AddRowBtnCommand}" Height="30" Width="80" Margin="10" Content="Add" />
+                        <Button Command="{Binding DeleteRowBtnCommand}" Height="30" Width="80" Margin="10" Content="Delete" />
+
+                    </StackPanel>
+                </Grid>
             </TabItem>
-            <TabItem Header="View2" ContentTemplateSelector="{StaticResource TemplateSelector}" IsSelected="{Binding isSelectedBool}">
+            
+            <TabItem Header="View2">
             </TabItem>
+            
         </TabControl>
+        
     </Grid>
 </Window>
-
 

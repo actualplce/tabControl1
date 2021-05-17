@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-
+using tabControl1.ViewModel;
 
 namespace tabControl1
 {
@@ -13,10 +13,14 @@ namespace tabControl1
         public DataTemplate SecondTypeTemplate { get; set; }
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item.GetType() == typeof(FirstViewModel))
+            if(((MyTabItemModel)(item)).CurrentMyTabContentViewModel is FirstViewViewModel)
+            {
                 return FirstTypeTemplate;
+            }
             return SecondTypeTemplate;
         }
 
     }
+
+
 }

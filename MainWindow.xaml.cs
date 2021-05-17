@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using tabControl1.ViewModel;
 
 namespace tabControl1
 {
@@ -24,7 +25,7 @@ namespace tabControl1
         {
             InitializeComponent();
 
-            this.DataContext = new ViewModel();
+            this.currentTabControl.DataContext= new MyTabControlViewModel();
         }
     }
 }
