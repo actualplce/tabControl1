@@ -25,7 +25,7 @@ namespace tabControl1
         {
             InitializeComponent();
 
-            this.currentTabControl.DataContext= new MyTabControlViewModel();
+            this.DataContext= new MyTabControlViewModel();
         }
     }
 }
