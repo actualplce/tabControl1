@@ -15,7 +15,7 @@ namespace tabControl1
     /// <summary>
     /// SecondView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class SecondView : Window
+    public partial class SecondView : UserControl
     {
         public SecondView()
         {
