@@ -27,11 +27,10 @@
             </DataGrid.CellStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="번호" MinWidth="10" Width="Auto" Binding="{Binding Number}" />
-                <DataGridTextColumn Header="이름" MinWidth="10" Width="Auto" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="생년월일" MinWidth="10" Width="Auto" Binding="{Binding BirthYMD}" />
-                <DataGridTextColumn Header="기타" MinWidth="10" Width="Auto" Binding="{Binding Etc}" />
-
+                <DataGridTextColumn Header="번호" MinWidth="10" Width="*" Binding="{Binding Number}" />
+                <DataGridTextColumn Header="이름" MinWidth="10" Width="1.5*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="생년월일" MinWidth="10" Width="3*" Binding="{Binding BirthYMD, StringFormat={}{0:yyyy-MM-dd}}" />
+                <DataGridTextColumn Header="점수" MinWidth="10" Width="*" Binding="{Binding Score}" />
             </DataGrid.Columns>
         </DataGrid>
 
