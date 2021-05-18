@@ -14,7 +14,6 @@ namespace tabControl1.ViewModel
     class LoadCSVBtnCommand : ICommand
     {
         private FirstViewViewModel fvm;
-        private object Datagrid_Import;
 
         public event EventHandler CanExecuteChanged;
         public LoadCSVBtnCommand(FirstViewViewModel fvm)
@@ -41,7 +40,7 @@ namespace tabControl1.ViewModel
                 return;
             }
 
-            OfficeOpenXml.FormulaParsing.Excel.Application xlApp;
+            Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
             Excel.Range range;
@@ -86,11 +85,11 @@ namespace tabControl1.ViewModel
                             sData += dCellData.ToString() + "|";
                         }
                     }
-                    sData = sData.Remove(strData.Length - 1, 1);
+                    sData = sData.Remove(sData.Length - 1, 1); //strData.Length->sData.Length
                     dt.Rows.Add(sData.Split('|'));
                 }
 
-                dataExcel.ItemsSource = dt.DefaultView;
+                fvm.DataExcel.ItemsSource = dt.DefaultView;
 
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
