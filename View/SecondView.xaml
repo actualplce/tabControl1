@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
-        <TextBlock Text="view2"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="7*"/>
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="view2" Background="Aquamarine" Grid.Column="0"/>
+
+
+    <StackPanel Grid.Column="1" Background="Azure">
+            <Button Content="Plot" 
+                    Command="{Binding PlotBtnCommand}"
+                    Margin="10" />
+        </StackPanel>
+        
     </Grid>
 </UserControl>

@@ -18,7 +18,39 @@ namespace tabControl1.ViewModel
 
         }
 
-        string displayText = "";
+
+
+        int number= 0;
+        //계산기의 출력창과 바인딩된 속성
+        public int Number
+        {
+            internal set
+            {
+                if (number != value)
+                {
+                    number = value;
+                    OnPropertyChanged("Number");
+                }
+            }
+            get { return number; }
+        }
+
+        string name = "";
+        public string Name
+        {
+            internal set
+            {
+                if (name != value)
+                {
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+            get { return name; }
+        }
+
+
+        /*string displayText = "";
         //계산기의 출력창과 바인딩된 속성
         public string DisplayText
         {
@@ -31,18 +63,14 @@ namespace tabControl1.ViewModel
                 }
             }
             get { return displayText; }
-        }
+        }*/
 
 
         public ICommand LoadCSVBtnCommand { protected set; get;}
         public ICommand SaveCSVBtnCommand { protected set; get; }
         public ICommand AddRowBtnCommand { protected set; get; }
         public ICommand DeleteRowBtnCommand { protected set; get; }
-
-
-
-
-
+        public object Datagrid_Import { get; internal set; }
     }
 
 
@@ -52,6 +80,14 @@ namespace tabControl1.ViewModel
 
     public class SecondViewViewModel : IMyTabContentViewModel 
     {
+
+
+
+
+
+
+
+
 
     }
 
