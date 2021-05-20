@@ -24,7 +24,7 @@ namespace tabControl1.ViewModel
         //계산기의 출력창과 바인딩된 속성
         public int Number
         {
-            internal set
+            set
             {
                 if (number != value)
                 {
@@ -70,7 +70,7 @@ namespace tabControl1.ViewModel
         public ICommand SaveCSVBtnCommand { protected set; get; }
         public ICommand AddRowBtnCommand { protected set; get; }
         public ICommand DeleteRowBtnCommand { protected set; get; }
-        public object Datagrid_Import { get; internal set; }
+        public object DataExcel { get;  set; }
     }
 
 
@@ -78,7 +78,7 @@ namespace tabControl1.ViewModel
 
 
 
-    public class SecondViewViewModel : IMyTabContentViewModel 
+    public class SecondViewViewModel : BaseViewModel,IMyTabContentViewModel
     {
 
 

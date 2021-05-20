@@ -1,8 +1,4 @@
-﻿using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System;
 using System.Windows.Input;
 using Microsoft.Win32;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -49,7 +45,8 @@ namespace tabControl1.ViewModel
             int rCnt = 0;
             int cCnt = 0;
             string sCellData = "";
-            double dCellData;
+            //double dCellData;
+            object dCellData;
 
             xlApp = new Excel.Application();
 
@@ -88,11 +85,12 @@ namespace tabControl1.ViewModel
                     sData = sData.Remove(sData.Length - 1, 1); //strData.Length->sData.Length
                     dt.Rows.Add(sData.Split('|'));
                 }
-
-                fvm.DataExcel.ItemsSource = dt.DefaultView;
+                 
+                
 
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
+                
 
                 releaseObject(xlWorkSheet);
                 releaseObject(xlWorkBook);
@@ -130,55 +128,15 @@ namespace tabControl1.ViewModel
 
         private void LoadFile(object sender)
         {
-            /*
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-
-            //Set filter for file extension and default file extention
-            dialog.DefaultExt = ".csv";
-            dialog.Filter = "csv Files (*.csv)|*.csv|Excel Files (*.xlsx)|*.xlsx";
-            dialog.Multiselect = true; //dialog에서 복수개의 파일을 선택할 수 있는지 설정
-
-            Nullable<bool> result = dialog.ShowDialog();
-
-            if (result == true)
-            {
-                string filepath = dialog.FileName;  //경로("C:\\Users\\asrock\\Desktop\\tabControlSample.csv")
-                var fi = new FileInfo(filepath);
-
-                using (var pakage = new ExcelPackage(fi))
-                {
-                    var workbook = pakage.Workbook;
-
-                    //Excel 내의 AllSheet에 접근
-                    var worksheet = workbook.Worksheets.FirstOrDefault();
-
-                    //시트의 마지막 row데이터에서 -1
-                    int noOfRow = worksheet.Dimension.End.Row - 1;
-
-                    //종류 row를 제외하고 2부터시작
-                    int row = 2;
-                    List<FirstViewViewModel> excelData = new List<FirstViewViewModel>();  //fvvn넣어도되나?
-                    for (int k = 0; k <= noOfRow -1; k++)
-                    {
-                        FirstViewViewModel item = new FirstViewViewModel();
-                        item.Number = Convert.ToInt32(worksheet.GetValue(row, 1));
-                        item.Name = worksheet.GetValue(row, 2).ToString();
-                        row++;
-                        excelData.Add(item);
-
-                        //productNumber가 0인시점에서 데이터 불러오는작업중단
-                        if(Convert.ToInt32(worksheet.GetValue(row,1))==0)
-                        { break; }
-
-                    }
-                    this.Datagrid_Import.ItemsSource = excelData;
-                }
-
-            }
-            */
+           
         }
 
     }
+
+
+
+
+
 
     class SaveCSVBtnCommand : ICommand
     {   //Save and Export To Excel and CSV
@@ -199,9 +157,9 @@ namespace tabControl1.ViewModel
         }
 
 
-
         private static void SaveFile(object sender)
         {
+            #region 1
             //저장할경로선택 후, 그 자리에 파일저장로직 쓰기
 
             /*Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
@@ -223,10 +181,13 @@ namespace tabControl1.ViewModel
                 }
 
             }*/
-
+            #endregion
         }
 
     }
+
+
+
 
     class AddRowBtnCommand : ICommand
     {
@@ -245,6 +206,12 @@ namespace tabControl1.ViewModel
             //AddRow
         }
     }
+
+
+
+
+
+
 
     class DeleteRowBtnCommand : ICommand
     {

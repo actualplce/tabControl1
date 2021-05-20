@@ -5,9 +5,9 @@ using System.Text;
 
 namespace tabControl1.ViewModel
 {
-    public class MyTabControlViewModel
+    public class MainViewModel
     {
-        public MyTabControlViewModel()
+        public MainViewModel()
         {
             this.Tabs = GetDemoData();
         }

@@ -13,7 +13,7 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="DataExcel" ItemsSource="{Binding ObserList}" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Column="0">
+        <DataGrid x:Name="DataExcel" ItemsSource="{Binding }" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Column="0">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="HorizontalAlignment" Value="Center"/>
