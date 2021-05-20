@@ -15,7 +15,10 @@ namespace tabControl1
         public FirstView()
         {
             InitializeComponent();
-           // DataExcel.DataContext = new ViewModel.MyTabItemModel();
+            //DataExcel.DataContext = new ViewModel.MyTabItemModel();
+            //            DataContext = new ViewModel.MyTabItemModel();
+            DataContext = new ViewModel.FirstViewViewModel();
+
         }
     }
 }

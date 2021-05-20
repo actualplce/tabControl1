@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using tabControl1.Data;
 
 namespace tabControl1.ViewModel
 {
@@ -15,9 +19,25 @@ namespace tabControl1.ViewModel
          this.DeleteRowBtnCommand = new DeleteRowBtnCommand(this);
 
      }
+    public List<FirstModel> FirstViewLoadFile(string filepath)
+        {
+            var lines = File.ReadAllLines(filepath);
+            var data = from l in lines.Skip(1)
+                       let split = l.Split(';')
+                       select new FirstModel
+                       {
+                           Number = int.Parse(split[0]),
+                           Name = split[1],
+                           BirthYMD = split[2],
+                           Score = double.Parse(split[3])
+
+                       };
 
 
+            return data.ToList();
+        }
 
+/*
      int number = 0;
      //계산기의 출력창과 바인딩된 속성
      public int Number
@@ -46,23 +66,7 @@ namespace tabControl1.ViewModel
          }
          get { return name; }
      }
-
-
-     /*string displayText = "";
-     //계산기의 출력창과 바인딩된 속성
-     public string DisplayText
-     {
-         internal set
-         {
-             if (displayText != value)
-             {
-                 displayText = value;
-                 OnPropertyChanged("DisplayText");
-             }
-         }
-         get { return displayText; }
-     }*/
-
+*/
 
      public ICommand LoadCSVBtnCommand { protected set; get; }
      public ICommand SaveCSVBtnCommand { protected set; get; }

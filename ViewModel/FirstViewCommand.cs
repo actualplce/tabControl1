@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
 using System.Windows;
+using System.IO;
 
 namespace tabControl1.ViewModel
 {
@@ -22,15 +23,22 @@ namespace tabControl1.ViewModel
         }
         public void Execute(object parameter)
         {
-            #region 로드로직
-            //로드파일로직구현
+                        //로드파일로직구현
             //  LoadFile(parameter);
 
             OpenFileDialog oFileDialog = new OpenFileDialog();
 
             oFileDialog.Filter = "Excel Files (*.csv, *.xlsx, *.xls) |*.csv;*.xlsx;*.xls";
             oFileDialog.Multiselect = true; //dialog에서 복수개의 파일을 선택할 수 있는지 설정
+                                            //string[] filenames = oFileDialog.FileNames;
+                                            // DataContext = PersonService.ReadFile(@"c:\file.csv");
+                                            //FirstViewViewModel.FirstViewLoadFile(경로);
+            string filepath = oFileDialog.FileName;
+           
 
+
+            #region prev1
+            /*
             if (oFileDialog.ShowDialog() == false)
             {
                 return;
@@ -101,7 +109,7 @@ namespace tabControl1.ViewModel
                 MessageBox.Show("파일 열기 실패! : " + ex.Message);
                 return;
             }
-
+            */
             #endregion
         }
 
