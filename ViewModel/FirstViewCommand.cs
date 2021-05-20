@@ -5,6 +5,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
 using System.Windows;
 using System.IO;
+using System.Linq;
+using tabControl1.Data;
+using System.Collections.Generic;
 
 namespace tabControl1.ViewModel
 {
@@ -33,8 +36,11 @@ namespace tabControl1.ViewModel
                                             //string[] filenames = oFileDialog.FileNames;
                                             // DataContext = PersonService.ReadFile(@"c:\file.csv");
                                             //FirstViewViewModel.FirstViewLoadFile(경로);
+            oFileDialog.ShowDialog();
             string filepath = oFileDialog.FileName;
-           
+
+
+            DataExcel.ItemsSource = FirstViewLoadFile(filepath);
 
 
             #region prev1
@@ -113,6 +119,24 @@ namespace tabControl1.ViewModel
             #endregion
         }
 
+        public List<FirstModel> FirstViewLoadFile(string filepath)
+        {
+            var lines = File.ReadAllLines(filepath);
+            var data = from l in lines.Skip(1)
+                       let split = l.Split(',')
+                       select new FirstModel
+                       {
+                           Number = int.Parse(split[0]),
+                           Name = split[1],
+                           BirthYMD = split[2],
+                           Score = double.Parse(split[3])
+
+                       };
+
+
+            return data.ToList();
+        }
+
         private void releaseObject(object obj)
         {
             try
@@ -131,17 +155,7 @@ namespace tabControl1.ViewModel
             }
         }
 
-           
-       
 
-
-
-        private void LoadFile(object sender)
-        {
-           
-        }
-
-    }
 
 
 
