@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Windows.Input;
 
 namespace tabControl1.ViewModel
 {
 
-    /*public class FirstViewViewModel : BaseViewModel, IMyTabContentViewModel
+    public class FirstViewViewModel : BaseViewModel, IMyTabContentViewModel
      {
          public FirstViewViewModel()
          {
@@ -61,7 +59,7 @@ namespace tabControl1.ViewModel
                  }
              }
              get { return displayText; }
-         }
+         }*/
 
 
          public ICommand LoadCSVBtnCommand { protected set; get; }
@@ -69,7 +67,7 @@ namespace tabControl1.ViewModel
          public ICommand AddRowBtnCommand { protected set; get; }
          public ICommand DeleteRowBtnCommand { protected set; get; }
 
-     }*/
+     }
 
 }
-}
+
