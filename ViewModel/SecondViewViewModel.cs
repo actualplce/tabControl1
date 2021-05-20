@@ -4,7 +4,11 @@ using System.Text;
 
 namespace tabControl1.ViewModel
 {
-    class SecondViewViewModel
+    public class SecondViewViewModel : IMyTabContentViewModel  //BaseViewModel, 
     {
+
+
+
+
     }
 }

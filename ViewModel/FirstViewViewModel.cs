@@ -1,75 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
 namespace tabControl1.ViewModel
 {
-
-    /*public class FirstViewViewModel : BaseViewModel, IMyTabContentViewModel
+    public class FirstViewViewModel : BaseViewModel,IMyTabContentViewModel
+    {
+        public FirstViewViewModel()
      {
-         public FirstViewViewModel()
+         this.LoadCSVBtnCommand = new LoadCSVBtnCommand(this);
+         this.SaveCSVBtnCommand = new SaveCSVBtnCommand(this);
+         this.AddRowBtnCommand = new AddRowBtnCommand(this);
+         this.DeleteRowBtnCommand = new DeleteRowBtnCommand(this);
+
+     }
+
+
+
+     int number = 0;
+     //계산기의 출력창과 바인딩된 속성
+     public int Number
+     {
+         set
          {
-             this.LoadCSVBtnCommand = new LoadCSVBtnCommand(this);
-             this.SaveCSVBtnCommand = new SaveCSVBtnCommand(this);
-             this.AddRowBtnCommand = new AddRowBtnCommand(this);
-             this.DeleteRowBtnCommand = new DeleteRowBtnCommand(this);
-
-         }
-
-
-
-         int number = 0;
-         //계산기의 출력창과 바인딩된 속성
-         public int Number
-         {
-             set
+             if (number != value)
              {
-                 if (number != value)
-                 {
-                     number = value;
-                     OnPropertyChanged("Number");
-                 }
+                 number = value;
+                 OnPropertyChanged("Number");
              }
-             get { return number; }
          }
+         get { return number; }
+     }
 
-         string name = "";
-         public string Name
+     string name = "";
+     public string Name
+     {
+         internal set
          {
-             internal set
+             if (name != value)
              {
-                 if (name != value)
-                 {
-                     name = value;
-                     OnPropertyChanged("Name");
-                 }
+                 name = value;
+                 OnPropertyChanged("Name");
              }
-             get { return name; }
          }
+         get { return name; }
+     }
 
 
-         /*string displayText = "";
-         //계산기의 출력창과 바인딩된 속성
-         public string DisplayText
+     /*string displayText = "";
+     //계산기의 출력창과 바인딩된 속성
+     public string DisplayText
+     {
+         internal set
          {
-             internal set
+             if (displayText != value)
              {
-                 if (displayText != value)
-                 {
-                     displayText = value;
-                     OnPropertyChanged("DisplayText");
-                 }
+                 displayText = value;
+                 OnPropertyChanged("DisplayText");
              }
-             get { return displayText; }
          }
-
-
-         public ICommand LoadCSVBtnCommand { protected set; get; }
-         public ICommand SaveCSVBtnCommand { protected set; get; }
-         public ICommand AddRowBtnCommand { protected set; get; }
-         public ICommand DeleteRowBtnCommand { protected set; get; }
-
+         get { return displayText; }
      }*/
 
-}
-}
+
+     public ICommand LoadCSVBtnCommand { protected set; get; }
+     public ICommand SaveCSVBtnCommand { protected set; get; }
+     public ICommand AddRowBtnCommand { protected set; get; }
+     public ICommand DeleteRowBtnCommand { protected set; get; }
+
+ }
+
+    }
+
+
+
+

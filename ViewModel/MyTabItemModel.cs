@@ -9,5 +9,8 @@ namespace tabControl1.ViewModel
         public string Header { get; set; }
 
         public IMyTabContentViewModel CurrentMyTabContentViewModel { get; set; }
+        //public class CurrentMyTabContentViewModel { get; set; }
+
+
     }
 }

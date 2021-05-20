@@ -21,12 +21,14 @@ namespace tabControl1.ViewModel
                 new MyTabItemModel()
                 {
                     Header = "CSV View",
-                    CurrentMyTabContentViewModel = new FirstViewViewModel()
+                   CurrentMyTabContentViewModel = new FirstViewViewModel()
+                  //  FirstViewViewModel();
+                
                 },
                 new MyTabItemModel()
                 {
                     Header = "Plot View",
-                    CurrentMyTabContentViewModel = new SecondViewViewModel()
+                   CurrentMyTabContentViewModel = new SecondViewViewModel()
                 }
 
 

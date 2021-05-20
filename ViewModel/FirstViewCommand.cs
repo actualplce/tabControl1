@@ -22,7 +22,7 @@ namespace tabControl1.ViewModel
         }
         public void Execute(object parameter)
         {
-
+            #region 로드로직
             //로드파일로직구현
             //  LoadFile(parameter);
 
@@ -101,6 +101,8 @@ namespace tabControl1.ViewModel
                 MessageBox.Show("파일 열기 실패! : " + ex.Message);
                 return;
             }
+
+            #endregion
         }
 
         private void releaseObject(object obj)
