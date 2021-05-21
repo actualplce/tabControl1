@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using tabControl1.Data;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace tabControl1.ViewModel
 {
@@ -34,9 +35,6 @@ namespace tabControl1.ViewModel
 
             oFileDialog.Filter = "Excel Files (*.csv, *.xlsx, *.xls) |*.csv;*.xlsx;*.xls";
             oFileDialog.Multiselect = true; //dialog에서 복수개의 파일을 선택할 수 있는지 설정
-                                            //string[] filenames = oFileDialog.FileNames;
-                                            // DataContext = PersonService.ReadFile(@"c:\file.csv");
-                                            //FirstViewViewModel.FirstViewLoadFile(경로);
             oFileDialog.ShowDialog();
             string filepath = oFileDialog.FileName;
 
@@ -44,7 +42,7 @@ namespace tabControl1.ViewModel
          //   fvm.ItemsList = FirstViewLoadFile(filepath);
             var listExample = FirstViewLoadFile(filepath);
             fvm.ItemsLists.Clear();
-            listExample.ForEach(x => fvm.ItemsLists.Add(x));
+            listExample.ForEach(x => fvm.ItemsLists.Add(x)); //(Command)List->(VM)ObservableCollection
 
             #region prev1
             /*
@@ -135,38 +133,14 @@ namespace tabControl1.ViewModel
                            Score = double.Parse(split[3])
 
                        };
-
-
             return data.ToList();
         }
-
-        private void releaseObject(object obj)
-        {
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                MessageBox.Show("Unable to release the Object " + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
-
-
-
-
-
     }
 
 
         class SaveCSVBtnCommand : ICommand
-        {   //Save and Export To Excel and CSV
+        {   
+            //Save and Export To Excel and CSV
             private FirstViewViewModel fvm;
             public event EventHandler CanExecuteChanged;
             public SaveCSVBtnCommand(FirstViewViewModel fvm)
@@ -179,39 +153,39 @@ namespace tabControl1.ViewModel
             }
             public void Execute(object parameter)
             {
+            parameter.GetType();
+            string path =  SaveFile(parameter);
+            
                 //Save파일로직구현
                 //SaveFile(parameter);
-            }
+        }
 
 
-            private static void SaveFile(object sender)
+            private static string SaveFile(object sender)
             {
-                #region 1
-                //저장할경로선택 후, 그 자리에 파일저장로직 쓰기
+            string filepath = "";
+                //Initialization
+                SaveFileDialog sFileDialog = new SaveFileDialog();
+                
+                //Settings
+                sFileDialog.Filter = "Excel Files (*.csv, *.xlsx, *.xls) |*.csv;*.xlsx;*.xls";
 
-                /*Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-
-                //Set filter for file extension and default file extention
-                dialog.DefaultExt = ".csv";
-                dialog.Filter = "csv Files (*.csv)|*.csv|Excel Files (*.xlsx)|*.xlsx";
-                dialog.Multiselect = true; //dialog에서 복수개의 파일을 선택할 수 있는지 설정
-
-                Nullable<bool> result = dialog.ShowDialog();
-
-                if (result == true)
-                {
-                    string filename = dialog.FileName;  //경로("C:\\Users\\asrock\\Desktop\\tabControlSample.csv")
-
-                    foreach (String file in dialog.FileNames)
-                    {
-
-                    }
-
-                }*/
-                #endregion
+            //Verification
+            if (sFileDialog.ShowDialog() == true)
+            {
+                filepath = sFileDialog.FileName;
+                return filepath;
             }
+            //Export to CSV file
+
+            return null;
+
+            }
+
 
         }
+
+        
 
 
 
@@ -255,6 +229,8 @@ namespace tabControl1.ViewModel
             public void Execute(object parameter)
             {
                 //DeleteRow
+                //fvm.ItemsLists. 1줄만 clear하고
+                //ItemsLists에도 반영
             }
         }
 
