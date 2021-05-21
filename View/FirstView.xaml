@@ -13,7 +13,7 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="DataExcel" ItemsSource="{Binding }" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Column="0">
+        <DataGrid x:Name="ItemsList" ItemsSource="{Binding ItemsLists}" CanUserAddRows="True" CanUserDeleteRows="True" AutoGenerateColumns="True" Grid.Column="0">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -26,7 +26,7 @@
                 </Style>
             </DataGrid.CellStyle>
 
-            <DataGrid.Columns>
+            <DataGrid.Columns >
                 <DataGridTextColumn Header="번호" MinWidth="10" Width="*" Binding="{Binding Number}" />
                 <DataGridTextColumn Header="이름" MinWidth="10" Width="1.5*" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="생년월일" MinWidth="10" Width="3*" Binding="{Binding BirthYMD, StringFormat={}{0:yyyy-MM-dd}}" />

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace tabControl1.Data
-{
-    public class FirstModel
+{   //public int Number { get; set }
+    public class FirstModel //(int number,...)
     {
         public int Number { get; set; }
         public string Name { get; set; }

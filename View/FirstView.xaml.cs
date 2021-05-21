@@ -3,6 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
 using Excel = Microsoft.Office.Interop.Excel;
+using tabControl1.ViewModel;
+using System.Windows;
 
 namespace tabControl1
 {
@@ -15,10 +17,7 @@ namespace tabControl1
         public FirstView()
         {
             InitializeComponent();
-            //DataExcel.DataContext = new ViewModel.MyTabItemModel();
-            //            DataContext = new ViewModel.MyTabItemModel();
-            DataContext = new ViewModel.FirstViewViewModel();
-
+            
         }
     }
 }

@@ -14,6 +14,7 @@ namespace tabControl1.ViewModel
     class LoadCSVBtnCommand : ICommand
     {
         private FirstViewViewModel fvm;
+        public List<FirstModel> LoadResult { get; set; }
 
         public event EventHandler CanExecuteChanged;
         public LoadCSVBtnCommand(FirstViewViewModel fvm)
@@ -26,7 +27,7 @@ namespace tabControl1.ViewModel
         }
         public void Execute(object parameter)
         {
-                        //로드파일로직구현
+            //로드파일로직구현
             //  LoadFile(parameter);
 
             OpenFileDialog oFileDialog = new OpenFileDialog();
@@ -40,8 +41,10 @@ namespace tabControl1.ViewModel
             string filepath = oFileDialog.FileName;
 
 
-            DataExcel.ItemsSource = FirstViewLoadFile(filepath);
-
+         //   fvm.ItemsList = FirstViewLoadFile(filepath);
+            var listExample = FirstViewLoadFile(filepath);
+            fvm.ItemsLists.Clear();
+            listExample.ForEach(x => fvm.ItemsLists.Add(x));
 
             #region prev1
             /*
@@ -159,106 +162,107 @@ namespace tabControl1.ViewModel
 
 
 
+    }
 
 
-
-    class SaveCSVBtnCommand : ICommand
-    {   //Save and Export To Excel and CSV
-        private FirstViewViewModel fvm;
-        public event EventHandler CanExecuteChanged;
-        public SaveCSVBtnCommand(FirstViewViewModel fvm)
-        {
-            this.fvm = fvm;
-        }
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public void Execute(object parameter)
-        {
-            //Save파일로직구현
-            //SaveFile(parameter);
-        }
-
-
-        private static void SaveFile(object sender)
-        {
-            #region 1
-            //저장할경로선택 후, 그 자리에 파일저장로직 쓰기
-
-            /*Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-
-            //Set filter for file extension and default file extention
-            dialog.DefaultExt = ".csv";
-            dialog.Filter = "csv Files (*.csv)|*.csv|Excel Files (*.xlsx)|*.xlsx";
-            dialog.Multiselect = true; //dialog에서 복수개의 파일을 선택할 수 있는지 설정
-
-            Nullable<bool> result = dialog.ShowDialog();
-
-            if (result == true)
+        class SaveCSVBtnCommand : ICommand
+        {   //Save and Export To Excel and CSV
+            private FirstViewViewModel fvm;
+            public event EventHandler CanExecuteChanged;
+            public SaveCSVBtnCommand(FirstViewViewModel fvm)
             {
-                string filename = dialog.FileName;  //경로("C:\\Users\\asrock\\Desktop\\tabControlSample.csv")
+                this.fvm = fvm;
+            }
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+            public void Execute(object parameter)
+            {
+                //Save파일로직구현
+                //SaveFile(parameter);
+            }
 
-                foreach (String file in dialog.FileNames)
+
+            private static void SaveFile(object sender)
+            {
+                #region 1
+                //저장할경로선택 후, 그 자리에 파일저장로직 쓰기
+
+                /*Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+
+                //Set filter for file extension and default file extention
+                dialog.DefaultExt = ".csv";
+                dialog.Filter = "csv Files (*.csv)|*.csv|Excel Files (*.xlsx)|*.xlsx";
+                dialog.Multiselect = true; //dialog에서 복수개의 파일을 선택할 수 있는지 설정
+
+                Nullable<bool> result = dialog.ShowDialog();
+
+                if (result == true)
                 {
+                    string filename = dialog.FileName;  //경로("C:\\Users\\asrock\\Desktop\\tabControlSample.csv")
 
-                }
+                    foreach (String file in dialog.FileNames)
+                    {
 
-            }*/
-            #endregion
+                    }
+
+                }*/
+                #endregion
+            }
+
         }
+
+
+
+
+        class AddRowBtnCommand : ICommand
+        {
+            private FirstViewViewModel fvm;
+            public event EventHandler CanExecuteChanged;
+            public AddRowBtnCommand(FirstViewViewModel fvm)
+            {
+                this.fvm = fvm;
+            }
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+            public void Execute(object parameter)
+            {
+                //AddRow
+            }
+        }
+
+
+
+
+
+
+
+        class DeleteRowBtnCommand : ICommand
+        {
+            public FirstViewViewModel fvm;
+            public event EventHandler CanExecuteChanged;
+            public DeleteRowBtnCommand(FirstViewViewModel fvm)
+            {
+                this.fvm = fvm;
+            }
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+            public void Execute(object parameter)
+            {
+                //DeleteRow
+            }
+        }
+
+
+
+
+
+
 
     }
 
-
-
-
-    class AddRowBtnCommand : ICommand
-    {
-        private FirstViewViewModel fvm;
-        public event EventHandler CanExecuteChanged;
-        public AddRowBtnCommand(FirstViewViewModel fvm)
-        {
-            this.fvm = fvm;
-        }
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public void Execute(object parameter)
-        {
-            //AddRow
-        }
-    }
-
-
-
-
-
-
-
-    class DeleteRowBtnCommand : ICommand
-    {
-        private FirstViewViewModel fvm;
-        public event EventHandler CanExecuteChanged;
-        public DeleteRowBtnCommand(FirstViewViewModel fvm)
-        {
-            this.fvm = fvm;
-        }
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public void Execute(object parameter)
-        {
-            //DeleteRow
-        }
-    }
-
-
-
-
-
-
-
-}
