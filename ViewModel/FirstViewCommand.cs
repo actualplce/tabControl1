@@ -145,7 +145,7 @@ namespace tabControl1.ViewModel
     }
 
 
-        class SaveCSVBtnCommand : ICommand
+    class SaveCSVBtnCommand : ICommand
         {   
             //Save and Export To Excel and CSV
             private FirstViewViewModel fvm;
@@ -225,7 +225,14 @@ namespace tabControl1.ViewModel
             }
             public void Execute(object parameter)
             {
-                //AddRow
+            //AddRow
+            int? a = null;
+            FirstModel tempModel = new FirstModel();
+            tempModel.BirthYMD = ""; //sample data
+            tempModel.Name = "";
+            tempModel.Number = (int)a;
+            tempModel.Score = (int)a;
+            fvm.ItemsLists.Add(tempModel);  //Insert sample data
             }
         }
 
