@@ -9,6 +9,7 @@ using System.Linq;
 using tabControl1.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace tabControl1.ViewModel
 {
@@ -39,11 +40,17 @@ namespace tabControl1.ViewModel
             string filepath = oFileDialog.FileName;
 
 
-         //   fvm.ItemsList = FirstViewLoadFile(filepath);
-            var listExample = FirstViewLoadFile(filepath);
-            fvm.ItemsLists.Clear();
-            listExample.ForEach(x => fvm.ItemsLists.Add(x)); //(Command)List->(VM)ObservableCollection
-
+            //   fvm.ItemsList = FirstViewLoadFile(filepath);
+            try
+            {
+                var listExample = LoadFile(filepath);
+                fvm.ItemsLists.Clear();
+                listExample.ForEach(x => fvm.ItemsLists.Add(x)); //(Command)List->(VM)ObservableCollection
+            }
+            catch (Exception e)
+            {
+                throw null;
+            }
             #region prev1
             /*
             if (oFileDialog.ShowDialog() == false)
@@ -120,12 +127,12 @@ namespace tabControl1.ViewModel
             #endregion
         }
 
-        public List<FirstModel> FirstViewLoadFile(string filepath)
+        public List<FirstModel> LoadFile(string filepath)
         {
-            var lines = File.ReadAllLines(filepath);
-            var data = from l in lines.Skip(1)
-                       let split = l.Split(',')
-                       select new FirstModel
+            var lines = File.ReadAllLines(filepath); //파일열어서 줄 다 읽음
+            var data = from l in lines.Skip(1)    //첫째열(헤더)스킵
+                       let split = l.Split(',')   //한 라인을 ,로 구분 (1,금동,950,30)
+                       select new FirstModel        //Model의 요소에 집어넣음.(리스트로 저장됨)
                        {
                            Number = int.Parse(split[0]),
                            Name = split[1],
@@ -153,35 +160,49 @@ namespace tabControl1.ViewModel
             }
             public void Execute(object parameter)
             {
-            parameter.GetType();
-            string path =  SaveFile(parameter);
-            
-                //Save파일로직구현
-                //SaveFile(parameter);
+
+            //SaveFileDialog
+            SaveFileDialog sFileDialog = new SaveFileDialog();
+
+            sFileDialog.Filter = "CSV file (*.csv) |*.csv";
+            sFileDialog.ShowDialog();
+            string filepath = sFileDialog.FileName;
+
+
+            //CopyList
+            ObservableCollection<FirstModel> copyList = new ObservableCollection<FirstModel>();
+            copyList = fvm.ItemsLists; 
+            string copiedText = CopyList(copyList);
+
+
+            //StreamWriter(write into CSV)
+            StreamWriter sw = new StreamWriter(filepath);
+            sw.WriteLine(copiedText);
+            sw.Close();
+
         }
 
 
-            private static string SaveFile(object sender)
+            private static string CopyList(ObservableCollection<FirstModel> copyList)
             {
-            string filepath = "";
-                //Initialization
-                SaveFileDialog sFileDialog = new SaveFileDialog();
+            //copy ItemsLists
+            string tempCSV = String.Empty;
+            tempCSV = "Number,Name,BirthYMD,Score\n";
+            for (int i = 0; i < copyList.Count; i++)
+            {
+                string tempRow = String.Empty;
+                tempRow += copyList[i].Number + ",";
+                tempRow += copyList[i].Name + ",";
+                tempRow += copyList[i].BirthYMD + ",";
+                tempRow += copyList[i].Score + "\n";
+
+                tempCSV += tempRow;
+
                 
-                //Settings
-                sFileDialog.Filter = "Excel Files (*.csv, *.xlsx, *.xls) |*.csv;*.xlsx;*.xls";
-
-            //Verification
-            if (sFileDialog.ShowDialog() == true)
-            {
-                filepath = sFileDialog.FileName;
-                return filepath;
             }
-            //Export to CSV file
-
-            return null;
-
-            }
-
+            return tempCSV;
+        }
+          
 
         }
 
