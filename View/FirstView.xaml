@@ -13,7 +13,7 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="ItemsList" ItemsSource="{Binding ItemsLists}" 
+        <DataGrid x:Name="ItemsList" ItemsSource="{Binding ItemsLists}"  SelectedIndex="{Binding selectedIndex}" SelectionMode="Extended"
                   CanUserAddRows="True" 
                   CanUserDeleteRows="True" 
                   AutoGenerateColumns="True" 

@@ -27,13 +27,14 @@ namespace tabControl1.ViewModel
             ItemsLists.Add(s);  //Insert sample data
           */
             #endregion
+            selectedIndex = 0;
        
 
         }
         //public List<FirstModel> FirstModel { get; set; }
         //private List<FirstModel> _ItemsList;
      public ObservableCollection<FirstModel> ItemsLists { get; set; }   //속성정의
-
+     public int selectedIndex { get; set; }   //datagrid 선택된 row?의 index (multiple items의 remove 어떻게?)
 
         public ICommand LoadCSVBtnCommand { protected set; get; }
      public ICommand SaveCSVBtnCommand { protected set; get; }

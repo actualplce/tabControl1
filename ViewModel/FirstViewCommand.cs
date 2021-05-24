@@ -227,11 +227,7 @@ namespace tabControl1.ViewModel
             {
             //AddRow
             FirstModel tempModel = new FirstModel();
-           // tempModel.BirthYMD = ""; //sample data
-            //tempModel.Name = "";
-            //tempModel.Number = 0;
-            //tempModel.Score = 1;
-            fvm.ItemsLists.Add(tempModel);  //Insert sample data
+            fvm.ItemsLists.Add(tempModel);  //Insert empty data
             }
         }
 
@@ -256,17 +252,12 @@ namespace tabControl1.ViewModel
             public void Execute(object parameter)
             {
             //DeleteRow
-            //fvm.ItemsLists. 1줄만 clear하고
-            //ItemsLists에도 반영
 
-            FirstModel tempModel = new FirstModel();
-            // tempModel.BirthYMD = ""; //sample data
-            //tempModel.Name = "";
-            //tempModel.Number = 0;
-            //tempModel.Score = 1;
-         //   fvm.ItemsLists.Remove(tempModel);  //Insert sample data
+            fvm.ItemsLists.RemoveAt(fvm.selectedIndex);  //Insert empty data
+            //foreach(var a1 in fvm.selectedIndex)
+            
         }
-        }
+    }  //한줄만 delete
 
 
 
