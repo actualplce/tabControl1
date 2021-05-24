@@ -10,6 +10,7 @@ using tabControl1.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections;
+using System.Text;
 
 namespace tabControl1.ViewModel
 {
@@ -163,7 +164,6 @@ namespace tabControl1.ViewModel
 
             //SaveFileDialog
             SaveFileDialog sFileDialog = new SaveFileDialog();
-
             sFileDialog.Filter = "CSV file (*.csv) |*.csv";
             sFileDialog.ShowDialog();
             string filepath = sFileDialog.FileName;
@@ -176,7 +176,7 @@ namespace tabControl1.ViewModel
 
 
             //StreamWriter(write into CSV)
-            StreamWriter sw = new StreamWriter(filepath);
+            StreamWriter sw = new StreamWriter(filepath,false,Encoding.UTF8);
             sw.WriteLine(copiedText);
             sw.Close();
 
