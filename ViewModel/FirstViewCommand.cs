@@ -17,8 +17,7 @@ namespace tabControl1.ViewModel
     class LoadCSVBtnCommand : ICommand
     {
         private FirstViewViewModel fvm;
-        public List<FirstModel> LoadResult { get; set; }
-
+        
         public event EventHandler CanExecuteChanged;
         public LoadCSVBtnCommand(FirstViewViewModel fvm)
         {

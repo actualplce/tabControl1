@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using LiveCharts;
-using LiveCharts.Defaults; 
+using LiveCharts.Defaults;
+
 namespace tabControl1.ViewModel
 {
     class SecondViewCommand
     {
         class PlotBtnCommand : ICommand
         {
-            private FirstViewViewModel fvm;
             private SecondViewViewModel svm;
+            private FirstViewViewModel fvm;
+
             public event EventHandler CanExecuteChanged;
             public PlotBtnCommand(SecondViewViewModel svm)
             {

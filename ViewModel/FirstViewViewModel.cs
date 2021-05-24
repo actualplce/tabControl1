@@ -31,12 +31,10 @@ namespace tabControl1.ViewModel
        
 
         }
-        //public List<FirstModel> FirstModel { get; set; }
-        //private List<FirstModel> _ItemsList;
      public ObservableCollection<FirstModel> ItemsLists { get; set; }   //속성정의
      public int selectedIndex { get; set; }   //datagrid 선택된 row?의 index (multiple items의 remove 어떻게?): selecteditem, ObservableCollection
 
-        public ICommand LoadCSVBtnCommand { protected set; get; }
+     public ICommand LoadCSVBtnCommand { protected set; get; }
      public ICommand SaveCSVBtnCommand { protected set; get; }
      public ICommand AddRowBtnCommand { protected set; get; }
      public ICommand DeleteRowBtnCommand { protected set; get; }
