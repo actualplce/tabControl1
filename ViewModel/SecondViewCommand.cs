@@ -13,8 +13,7 @@ namespace tabControl1.ViewModel
         class PlotBtnCommand : ICommand
         {
             private SecondViewViewModel svm;
-            private FirstViewViewModel fvm;
-
+        
             public event EventHandler CanExecuteChanged;
             public PlotBtnCommand(SecondViewViewModel svm)
             {
@@ -27,33 +26,29 @@ namespace tabControl1.ViewModel
             public void Execute(object parameter)
             {
 
-            //CopyList
-          //  ObservableCollection<FirstModel> copyList = new ObservableCollection<FirstModel>();
-           // copyList = fvm.ItemsLists;
-
-            for(int i=0;i<fvm.ItemsLists.Count;i++)
+            for(int i=0;i<svm._fvm.ItemsLists.Count;i++)
             {
                 ChartValues<double> test = new ChartValues<double>();
-                test.Add(fvm.ItemsLists[i].Score);
+                test.Add(svm._fvm.ItemsLists[i].Score);
 
                 //SeriesCollection seriesViews = new SeriesCollection();
             }
 
-            for (int i = 0; i < fvm.ItemsLists.Count; i++)
+            for (int i = 0; i < svm._fvm.ItemsLists.Count; i++)
             {
-              //  svm.stdNameXLabels.Add(fvm.ItemsLists[i].Name);
-            
+                //  svm.stdNameXLabels.Add(fvm.ItemsLists[i].Name);
+                svm.stdNameXLabels[i] = svm._fvm.ItemsLists[i].Name;
             
             }
 
-            svm.SeriesCollection = new SeriesCollection
+            /*svm.SeriesCollection = new SeriesCollection
             {
                 new ColumnSeries
                 {
-                    Title = "2015",
+                   // Title = "2015",
                     Values = new ChartValues<double> { 10, 50, 39, 50 }
                 }
-            };
+            };*/
 
             svm.ScoreFormatter = value => value.ToString("N");
 

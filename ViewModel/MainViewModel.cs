@@ -18,16 +18,18 @@ namespace tabControl1.ViewModel
                 new MyTabItemModel()
                 {
                     Header = "CSV View",
-                   CurrentMyTabContentViewModel = firstViewViewModel //new FirstViewViewModel()
+                   CurrentMyTabContentViewModel = firstViewViewModel 
                 
                 },
                 new MyTabItemModel()
                 {
                     Header = "Plot View",
-                   CurrentMyTabContentViewModel = secondViewViewModel//new SecondViewViewModel()
+                   CurrentMyTabContentViewModel = secondViewViewModel
                 }
         };
-            firstViewViewModel._svm = Tabs[1].CurrentMyTabContentViewModel as SecondViewViewModel;
+            //firstViewViewModel._svm = Tabs[1].CurrentMyTabContentViewModel as SecondViewViewModel;
+            secondViewViewModel._fvm = Tabs[0].CurrentMyTabContentViewModel as FirstViewViewModel;  //SecondVM에 FirstVM인자로써 전달
+            
         }
 
 

@@ -9,10 +9,7 @@ namespace tabControl1.ViewModel
 {
     public class FirstViewViewModel : BaseViewModel,IMyTabContentViewModel
     {
-        public FirstViewViewModel()
-        {
-        }
-       public FirstViewViewModel(SecondViewViewModel svm)
+       public FirstViewViewModel()
         {
             
          this.LoadCSVBtnCommand = new LoadCSVBtnCommand(this);
@@ -23,13 +20,13 @@ namespace tabControl1.ViewModel
         ItemsLists = new ObservableCollection<FirstModel>();  //DataGrid x:Name="ItemsList" ItemsSource="{Binding ItemsLists}"
             
         selectedIndex = 0;
-        this._svm = svm;
+        
        
 
         }
      public ObservableCollection<FirstModel> ItemsLists { get; set; }   //속성정의
      public int selectedIndex { get; set; }   //datagrid 선택된 row?의 index (multiple items의 remove 어떻게?): selecteditem, ObservableCollection
-        public SecondViewViewModel _svm;
+        //public SecondViewViewModel _svm;
 
      public ICommand LoadCSVBtnCommand { protected set; get; }
      public ICommand SaveCSVBtnCommand { protected set; get; }
