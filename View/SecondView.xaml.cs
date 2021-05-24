@@ -23,36 +23,6 @@ namespace tabControl1
         {
             InitializeComponent();
             
-
-            SeriesCollection = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "2015",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
-                }
-            };
-
-            stdNameXLabels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            ScoreFormatter = value => value.ToString("N");
-
-
-            //adding series will update and animate the chart automatically
-            #region 12
-            /*
-            SeriesCollection.Add(new ColumnSeries
-            {
-                Title = "2016",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
-            */
-
-            //also adding values updates and animates the chart automatically
-            //SeriesCollection[1].Values.Add(48d);
-            #endregion
-
-
-            DataContext = this;
         }
 
 

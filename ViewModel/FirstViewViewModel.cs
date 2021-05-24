@@ -11,28 +11,25 @@ namespace tabControl1.ViewModel
     {
         public FirstViewViewModel()
         {
+        }
+       public FirstViewViewModel(SecondViewViewModel svm)
+        {
             
          this.LoadCSVBtnCommand = new LoadCSVBtnCommand(this);
          this.SaveCSVBtnCommand = new SaveCSVBtnCommand(this);
          this.AddRowBtnCommand = new AddRowBtnCommand(this);
          this.DeleteRowBtnCommand = new DeleteRowBtnCommand(this);
 
-            ItemsLists = new ObservableCollection<FirstModel>();  //DataGrid x:Name="ItemsList" ItemsSource="{Binding ItemsLists}"
-            #region sample1
-            /*  FirstModel s = new FirstModel();
-            s.BirthYMD = "test"; //sample data
-            s.Name = "test";
-            s.Number = 11;
-            s.Score = 22;
-            ItemsLists.Add(s);  //Insert sample data
-          */
-            #endregion
-            selectedIndex = 0;
+        ItemsLists = new ObservableCollection<FirstModel>();  //DataGrid x:Name="ItemsList" ItemsSource="{Binding ItemsLists}"
+            
+        selectedIndex = 0;
+        this._svm = svm;
        
 
         }
      public ObservableCollection<FirstModel> ItemsLists { get; set; }   //속성정의
      public int selectedIndex { get; set; }   //datagrid 선택된 row?의 index (multiple items의 remove 어떻게?): selecteditem, ObservableCollection
+        public SecondViewViewModel _svm;
 
      public ICommand LoadCSVBtnCommand { protected set; get; }
      public ICommand SaveCSVBtnCommand { protected set; get; }
