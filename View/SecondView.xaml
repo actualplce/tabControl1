@@ -16,10 +16,10 @@
         </Grid.RowDefinitions>
 
         <lvc:CartesianChart Series="{Binding seriesCollection}" 
-                            LegendLocation="Top" Background="White"
+                            Background="White"
                             Grid.Column="0" Grid.Row="0">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Student Name" Labels="{Binding stdNameXLabels}"></lvc:Axis>
+                <lvc:Axis Title="Student Name" Labels="{Binding label}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis Title="Score" >

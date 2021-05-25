@@ -25,45 +25,34 @@ namespace tabControl1.ViewModel
         }
         public void Execute(object parameter)
         {
-            ChartValues<double> test = new ChartValues<double>();
-            for (int i = 0; i < svm._fvm.ItemsLists.Count; i++)             //Name
+
+            ChartValues<double> test = new ChartValues<double>();  //numb temp
+            List<string> list = new List<string>();  //name temp
+            double a = 0;
+
+
+            for (int i = 0; i < svm._fvm.ItemsLists.Count; i++)             
             {
-                svm.stdNameXLabels[i] = svm._fvm.ItemsLists[i].Name;
-                double[] a = new double[] { };
-                a[i] = svm._fvm.ItemsLists[i].Score;  //out of range of array
-                test.Add(svm._fvm.ItemsLists[i].Score);
+                list.Add(svm._fvm.ItemsLists[i].Name );  //name add  
+
+                a = svm._fvm.ItemsLists[i].Score;   //numb add ok
+                test.Add(a);
+
 
             }
 
-            //  for (int i = 0; i < svm._fvm.ItemsLists.Count; i++)             //Name
-            //{
-            //    svm.stdNameXLabels[i] = svm._fvm.ItemsLists[i].Name;
-            //    //test.Add(svm._fvm.ItemsLists[i].Score);
+            //svm.stdNameXLabels = list.ToArray();
+            svm.label = new string[] { "1", "2", "3", "4" };
 
-            //}
-
-            svm.seriesCollection= new SeriesCollection()
+            
+            svm.seriesCollection = new SeriesCollection()
             {
                 new ColumnSeries
                 {
-                    
                     Values = test
                 }
             };
 
-            /*
-    seriesViews.Add(new ColumnSeries
-    {
-        // Title = "2015",
-        Values = new ChartValues<double> { 10, 20, 30, 40 }
-    });
-*/
-            // svm.seriesCollection = seriesViews;
-
-
-
-           //svm.seriesCollection = test as SeriesCollection;
-         
 
 
 

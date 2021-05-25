@@ -14,12 +14,11 @@ namespace tabControl1.ViewModel
             this.PlotBtnCommand = new PlotBtnCommand(this);
 
             seriesCollection = new SeriesCollection();
-            stdNameXLabels = new string[] { };
+            label = new string[] { };
             scoreFormatter = value => value.ToString("N");
             this._fvm = fvm;
 
-            int a = fvm.ItemsLists.Count;
-
+            
 
         }
 
@@ -56,10 +55,26 @@ namespace tabControl1.ViewModel
             this.OnPropertyChanged("seriesCollection");
             }
         }
-
-
         
-        public string[] stdNameXLabels { get; set; }
+
+
+        private String[] _label;
+        public String[] label
+        {
+            get { return _label; }
+            set
+            {
+                if (label == value)
+                {
+                    return;
+                }
+                _label = value;
+                this.OnPropertyChanged("label");
+            }
+        }
+
+
+
         public Func<double, string> scoreFormatter { get; set; }
         //Func<double(in),string(out)>: double을 string으로 변환.
 
