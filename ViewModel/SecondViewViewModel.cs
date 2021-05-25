@@ -6,17 +6,18 @@ using System.Windows.Input;
 
 namespace tabControl1.ViewModel
 {
-    public class SecondViewViewModel : BaseViewModel,IMyTabContentViewModel  
+    public class SecondViewViewModel : BaseViewModel, IMyTabContentViewModel
     {
-        public SecondViewViewModel(){ }
+        public SecondViewViewModel() { }
         public SecondViewViewModel(FirstViewViewModel fvm)
         {
             this.PlotBtnCommand = new PlotBtnCommand(this);
 
-            SeriesCollection = new SeriesCollection();
-            stdNameXLabels = new string[50];
-            ScoreFormatter= value => value.ToString("N");
-            this._fvm= fvm;
+            seriesCollection = new SeriesCollection();
+            stdNameXLabels = new string[] { };
+            scoreFormatter = value => value.ToString("N");
+            this._fvm = fvm;
+
             int a = fvm.ItemsLists.Count;
 
 
@@ -25,12 +26,12 @@ namespace tabControl1.ViewModel
       //  public FirstViewViewModel _fvm;
         public ICommand PlotBtnCommand { set; get; }
 
-        
+
         private FirstViewViewModel __fvm = new FirstViewViewModel();
         public FirstViewViewModel _fvm
         {
             get { return __fvm; }
-            private set
+            set
             {
                 if (_fvm == value)
                 {
@@ -40,10 +41,26 @@ namespace tabControl1.ViewModel
                 this.OnPropertyChanged("_fvm ");
             }
         }
+
+        private SeriesCollection _seriesCollection ;
+        public SeriesCollection seriesCollection
+        {
+            get { return _seriesCollection; }
+            set
+            {
+                if (seriesCollection == value)
+                {
+                    return;
+                }
+            _seriesCollection = value;
+            this.OnPropertyChanged("seriesCollection");
+            }
+        }
+
+
         
-        public SeriesCollection SeriesCollection { get; set; }
         public string[] stdNameXLabels { get; set; }
-        public Func<double, string> ScoreFormatter { get; set; }
+        public Func<double, string> scoreFormatter { get; set; }
         //Func<double(in),string(out)>: double을 string으로 변환.
 
 

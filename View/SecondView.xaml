@@ -15,14 +15,15 @@
             <RowDefinition Height="400"/>
         </Grid.RowDefinitions>
 
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" 
+        <lvc:CartesianChart Series="{Binding seriesCollection}" 
                             LegendLocation="Top" Background="White"
                             Grid.Column="0" Grid.Row="0">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Student Name" Labels="{Binding stdNameXLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Score" LabelFormatter="{Binding ScoreFormatter}"></lvc:Axis>
+                <lvc:Axis Title="Score" >
+                </lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 

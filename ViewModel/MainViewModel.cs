@@ -12,50 +12,51 @@ namespace tabControl1.ViewModel
             //this.Tabs = GetDemoData();
             //this.Tabs[0] = firstViewViewModel;
             FirstViewViewModel firstViewViewModel = new FirstViewViewModel();
-            SecondViewViewModel secondViewViewModel = new SecondViewViewModel();
+            SecondViewViewModel secondViewViewModel = new SecondViewViewModel(firstViewViewModel);
             this.Tabs = new ObservableCollection<MyTabItemModel>
-            {           
+            {
                 new MyTabItemModel()
                 {
                     Header = "CSV View",
-                   CurrentMyTabContentViewModel = firstViewViewModel 
-                
+                   CurrentMyTabContentViewModel = firstViewViewModel
+
                 },
                 new MyTabItemModel()
                 {
                     Header = "Plot View",
                    CurrentMyTabContentViewModel = secondViewViewModel
                 }
-        };
+            };
             //firstViewViewModel._svm = Tabs[1].CurrentMyTabContentViewModel as SecondViewViewModel;
-            secondViewViewModel._fvm = Tabs[0].CurrentMyTabContentViewModel as FirstViewViewModel;  //SecondVM에 FirstVM인자로써 전달
-            
+            //secondViewViewModel._fvm = Tabs[0].CurrentMyTabContentViewModel as FirstViewViewModel;  //SecondVM에 FirstVM인자로써 전달
+
         }
 
 
 
         public ObservableCollection<MyTabItemModel> Tabs { get; set; }
 
-    /*    private static ObservableCollection<MyTabItemModel> GetDemoData()
-        {
-            return new ObservableCollection<MyTabItemModel>
+        /*    private static ObservableCollection<MyTabItemModel> GetDemoData()
             {
-                new MyTabItemModel()
+                return new ObservableCollection<MyTabItemModel>
                 {
-                    Header = "CSV View",
-                   CurrentMyTabContentViewModel = new FirstViewViewModel()
-                  //  FirstViewViewModel();
-                
-                },
-                new MyTabItemModel()
-                {
-                    Header = "Plot View",
-                   CurrentMyTabContentViewModel = new SecondViewViewModel()
-                }
+                    new MyTabItemModel()
+                    {
+                        Header = "CSV View",
+                       CurrentMyTabContentViewModel = new FirstViewViewModel()
+                      //  FirstViewViewModel();
+
+                    },
+                    new MyTabItemModel()
+                    {
+                        Header = "Plot View",
+                       CurrentMyTabContentViewModel = new SecondViewViewModel()
+                    }
 
 
-        };
-      */  }
+            };
+          */
     }
+}
 
 

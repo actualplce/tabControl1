@@ -49,7 +49,8 @@ namespace tabControl1.ViewModel
             }
             catch (Exception e)
             {
-                throw null;
+                return;
+                //throw null;
             }
             #region prev1
             /*
