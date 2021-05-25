@@ -33,18 +33,14 @@ namespace tabControl1.ViewModel
 
             for (int i = 0; i < svm._fvm.ItemsLists.Count; i++)             
             {
-                list.Add(svm._fvm.ItemsLists[i].Name );  //name add  
+                list.Add(svm._fvm.ItemsLists[i].Name);  //name add  
 
                 a = svm._fvm.ItemsLists[i].Score;   //numb add ok
                 test.Add(a);
 
-
             }
 
-            //svm.stdNameXLabels = list.ToArray();
-            svm.label = new string[] { "1", "2", "3", "4" };
-
-            
+            svm.label = list.ToArray();
             svm.seriesCollection = new SeriesCollection()
             {
                 new ColumnSeries
@@ -52,10 +48,6 @@ namespace tabControl1.ViewModel
                     Values = test
                 }
             };
-
-
-
-
         }
 
 

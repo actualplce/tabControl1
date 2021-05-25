@@ -7,9 +7,6 @@ using System.Windows.Input;
 namespace tabControl1.ViewModel
 {
     public interface IMyTabContentViewModel { }
-
-
-   // public class FirstViewViewModel { }
-
-  // public class SecondViewViewModel { }
+    // public class FirstViewViewModel { }
+    // public class SecondViewViewModel { }
 }
