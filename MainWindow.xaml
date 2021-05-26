@@ -29,6 +29,7 @@
                                     SecondTypeTemplate="{StaticResource SecondViewTemplate}"/>
 
         </Grid.Resources>
+        
         <StackPanel>
         <TabControl ItemsSource="{Binding Tabs}" 
                     ItemTemplate="{StaticResource MyTabHeaderTemplate}"

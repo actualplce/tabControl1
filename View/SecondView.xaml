@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter ="clr-namespace:tabControl1.Converter"
+        xmlns:converter ="clr-namespace:tabControl1.Converter"
         mc:Ignorable="d"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         Height="500" Width="1000">
     <Grid >
         <Grid.Resources>
             <converter:SeriesConverter x:Key="SeriesConverter"/>
+            <converter:LabelsConverter x:Key="LabelsConverter"/>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="800"/>
@@ -23,7 +24,7 @@
                             Background="White"
                             Grid.Column="0" Grid.Row="0">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Student Name" Labels="{Binding label}"></lvc:Axis>
+                <lvc:Axis Title="Student Name" Labels="{Binding _fvm.ItemsLists, Converter={StaticResource LabelsConverter}}"/>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis Title="Score" >
@@ -31,12 +32,12 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
-
+<!--
         <StackPanel Grid.Column="1" Grid.Row="0" Background="Azure">
             <Button Content="Plot" 
                     Command="{Binding PlotBtnCommand}"
                     Margin="10" />
         </StackPanel>
-        
+  -->      
     </Grid>
 </UserControl>

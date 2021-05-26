@@ -27,21 +27,24 @@ namespace tabControl1.ViewModel
         {
 
             ChartValues<double> test = new ChartValues<double>();  //numb temp
-            List<string> list = new List<string>();  //name temp
             double a = 0;
 
+            List<string> list = new List<string>();  //name temp
+            
 
             for (int i = 0; i < svm._fvm.ItemsLists.Count; i++)             
             {
-                list.Add(svm._fvm.ItemsLists[i].Name);  //name add  
 
                 a = svm._fvm.ItemsLists[i].Score;   //numb add ok
                 test.Add(a);
 
+                list.Add(svm._fvm.ItemsLists[i].Name);  //name add  
+
+                
             }
 
-            svm.label = list.ToArray();
-            svm.seriesCollection = new SeriesCollection()
+            svm.label = list.ToArray();  //name
+            svm.seriesCollection = new SeriesCollection()   //numb
             {
                 new ColumnSeries
                 {
