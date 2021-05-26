@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter ="clr-namespace:tabControl1.Converter"
         mc:Ignorable="d"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         Height="500" Width="1000">
     <Grid >
+        <Grid.Resources>
+            <converter:SeriesConverter x:Key="SeriesConverter"/>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="800"/>
             <ColumnDefinition  Width="100"/>
@@ -15,7 +19,7 @@
             <RowDefinition Height="400"/>
         </Grid.RowDefinitions>
 
-        <lvc:CartesianChart Series="{Binding seriesCollection}" 
+        <lvc:CartesianChart Series="{Binding _fvm.ItemsLists, Converter={StaticResource SeriesConverter}}" 
                             Background="White"
                             Grid.Column="0" Grid.Row="0">
             <lvc:CartesianChart.AxisX>
